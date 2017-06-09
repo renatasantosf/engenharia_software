@@ -1,2 +1,2 @@
 # engenharia_software
-Repositório destinado ao trabalho finall de engenharia de software. 
+Repositório destinado ao trabalho final de engenharia de software. 
