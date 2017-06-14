@@ -5,10 +5,76 @@
  */
 package br.com.senacrs.biblioteca.dominio;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author renat
+ *
  */
 public class Emprestimo {
+    private int codigo;
+    private Usuario usuario;
+    private Livro livro;
+    private LocalDate dt_emprestimo;
+    private LocalDate dt_entrega;
+
+    public Emprestimo(int codigo, Usuario usuario, Livro livro, LocalDate dt_emprestimo, LocalDate dt_entrega) {
+        this.codigo = codigo;
+        this.usuario = usuario;
+        this.livro = livro;
+        this.dt_emprestimo = dt_emprestimo;
+        this.dt_entrega = dt_entrega;
+    }
+    
+    
+     public Emprestimo(Usuario usuario, Livro livro, LocalDate dt_emprestimo, LocalDate dt_entrega) {
+        this.usuario = usuario;
+        this.livro = livro;
+        this.dt_emprestimo = dt_emprestimo;
+        this.dt_entrega = dt_entrega;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Livro getLivro() {
+        return livro;
+    }
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
+    }
+
+    public LocalDate getDt_emprestimo() {
+        return dt_emprestimo;
+    }
+
+    public void setDt_emprestimo(LocalDate dt_emprestimo) {
+        this.dt_emprestimo = dt_emprestimo;
+    }
+
+    public LocalDate getDt_entrega() {
+        return dt_entrega;
+    }
+
+    public void setDt_entrega(LocalDate dt_entrega) {
+        this.dt_entrega = dt_entrega;
+    }
+     
+     
     
 }

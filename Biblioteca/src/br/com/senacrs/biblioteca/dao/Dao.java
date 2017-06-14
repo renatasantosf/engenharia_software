@@ -5,10 +5,20 @@
  */
 package br.com.senacrs.biblioteca.dao;
 
+import java.util.List;
+
 /**
  *
  * @author renat
  */
-public interface Dao {
+public interface Dao<T> {
+    
+    public void salvar(T dominio);
+    public void deletar(T dominio);
+    public void atualizar(T dominio);
+    public List<T> listar();
+    public T procurarPorMatricula(int codigo);
     
 }
+    
+
