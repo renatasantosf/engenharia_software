@@ -3,12 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Faculdade/5º%20Semestre/Biblioteca/src/br/com/senacrs/biblioteca/dao/Dao.java</file>
-            <file>file:/D:/Faculdade/5º%20Semestre/Biblioteca/src/br/com/senacrs/biblioteca/controller/UsuarioController.java</file>
-            <file>file:/D:/Faculdade/5º%20Semestre/Biblioteca/src/br/com/senacrs/biblioteca/negocio/UsuarioNegocio.java</file>
-            <file>file:/D:/Faculdade/5º%20Semestre/Biblioteca/src/br/com/senacrs/biblioteca/Biblioteca.java</file>
-            <file>file:/D:/Faculdade/5º%20Semestre/Biblioteca/src/br/com/senacrs/biblioteca/dao/impl_BD/UsuarioDaoBd.java</file>
-            <file>file:/D:/Faculdade/5º%20Semestre/Biblioteca/src/br/com/senacrs/biblioteca/dominio/Usuario.java</file>
+            <file>file:/C:/Users/Renata-Samsung/Music/Biblioteca/src/br/com/senacrs/biblioteca/controller/UsuarioController.java</file>
+            <file>file:/C:/Users/Renata-Samsung/Music/Biblioteca/src/br/com/senacrs/biblioteca/Biblioteca.java</file>
+            <file>file:/C:/Users/Renata-Samsung/Music/Biblioteca/src/br/com/senacrs/biblioteca/view/PainelTabelaUsuario.fxml</file>
         </group>
     </open-files>
 </project-private>

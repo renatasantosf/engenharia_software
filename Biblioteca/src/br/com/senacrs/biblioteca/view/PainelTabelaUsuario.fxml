@@ -6,28 +6,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="1013.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.com.senacrs.biblioteca.controller.UsuarioController">
+<AnchorPane id="AnchorPane" fx:id="principal" prefHeight="519.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.senacrs.biblioteca.controller.UsuarioController">
    <children>
-      <VBox fx:id="principal" prefHeight="560.0" prefWidth="1013.0">
-         <children>
-            <ToolBar fx:id="toolPrincipal" prefHeight="41.0" prefWidth="1013.0">
-              <items>
-                <Button fx:id="btIncluir" mnemonicParsing="false" onAction="#tratarBotaoIncluir" text="Incluir" />
-                  <Button fx:id="btAlterar" mnemonicParsing="false" onAction="#tratarBotaoAlterar" text="Alterar" />
-                  <Button fx:id="btRemover" mnemonicParsing="false" onAction="#tratarBotaoRemover" text="Remover" />
-              </items>
-            </ToolBar>
-            <TableView fx:id="tableViewUsuarios" prefHeight="520.0" prefWidth="1013.0">
-              <columns>
-                <TableColumn fx:id="tableColumnMatricula" prefWidth="118.0" text="Matrícula" />
-                <TableColumn fx:id="TableColumnNome" prefWidth="417.0" text="Nome" />
-                  <TableColumn fx:id="TableColumnCpf" prefWidth="179.0" text="CPF" />
-                  <TableColumn fx:id="tableColumnTelefone" prefWidth="214.0" text="Telefone" />
-                  <TableColumn fx:id="tableColumnStatus" prefWidth="84.0" text="Status" />
-              </columns>
-            </TableView>
-         </children>
-      </VBox>
+      <ToolBar fx:id="toolPrincipal" prefHeight="41.0" prefWidth="1013.0">
+        <items>
+          <Button fx:id="btIncluir" mnemonicParsing="false" onAction="#tratarBotaoCadastrar" text="Incluir" />
+            <Button fx:id="btAlterar" mnemonicParsing="false" onAction="#tratarBotaoEditar" text="Alterar" />
+            <Button fx:id="btRemover" mnemonicParsing="false" onAction="#tratarBotaoRemover" text="Remover" />
+        </items>
+      </ToolBar>
+      <TableView fx:id="tableViewUsuarios" layoutY="40.0" prefHeight="480.0" prefWidth="1013.0">
+        <columns>
+          <TableColumn fx:id="tableColumnMatricula" prefWidth="118.0" text="Matrícula" />
+          <TableColumn fx:id="tableColumnNome" prefWidth="417.0" text="Nome" />
+            <TableColumn fx:id="tableColumnCpf" prefWidth="179.0" text="CPF" />
+            <TableColumn fx:id="tableColumnTelefone" prefWidth="214.0" text="Telefone" />
+            <TableColumn fx:id="tableColumnStatus" prefWidth="84.0" text="Status" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

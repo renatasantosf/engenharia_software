@@ -33,7 +33,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,7 +42,7 @@ import javax.swing.JOptionPane;
 public class UsuarioController implements Initializable {
 
     @FXML
-    private VBox principal;
+    private AnchorPane principal;
     @FXML
     private TableView<Usuario> tableViewUsuarios;
     @FXML
