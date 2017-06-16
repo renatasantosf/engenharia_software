@@ -15,14 +15,16 @@ public class Usuario {
     private String cpf;
     private int telefone;
     private String senha;
+    private String email;
     private boolean status;
 
-    public Usuario(int matricula, String nome, String cpf, int telefone, String senha,boolean status) {
+    public Usuario(int matricula, String nome, String cpf, int telefone, String senha,String email, boolean status) {
         this.matricula = matricula;
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
         this.senha = senha;
+        this.email = email;
         this.status = status;
     }
 
@@ -75,6 +77,16 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    
+    
     public boolean isStatus() {
         return status;
     }

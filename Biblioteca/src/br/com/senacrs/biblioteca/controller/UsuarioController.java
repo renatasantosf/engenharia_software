@@ -25,12 +25,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -54,6 +54,9 @@ public class UsuarioController implements Initializable {
     @FXML
     private TableColumn<Usuario, Integer> tableColumnTelefone;
     @FXML
+    private TableColumn<Usuario, String> tableColumnEmail;
+    
+    @FXML
     private TableColumn<Usuario, String> tableColumnStatus;
     
 
@@ -67,10 +70,20 @@ public class UsuarioController implements Initializable {
     private TextField tfCpf;
     @FXML
     private TextField tfTelefone;
+    
+    @FXML
+    private TextField tfEmail;
+    
     @FXML
     private TextField tfSenha;
     @FXML
     private TextField tfSenha1;
+    
+    @FXML
+    private Button btLimpar;
+    
+    @FXML
+    private Button btSalvar;
     
     private int tela;
     private List<Usuario> listaUsuarios;
@@ -95,6 +108,7 @@ public class UsuarioController implements Initializable {
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tableColumnCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         tableColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+        tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         tableColumnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         
         
@@ -120,7 +134,7 @@ public class UsuarioController implements Initializable {
 
     @FXML
     public void tratarBotaoEditar(ActionEvent event) throws IOException {
-        Usuario usuarioSelecionado = tableViewUsuarios.getSelectionModel().getSelectedItem();
+        usuarioSelecionado = tableViewUsuarios.getSelectionModel().getSelectedItem();
         if (usuarioSelecionado != null) {
             FXMLLoader loader = new FXMLLoader(Biblioteca.class.getResource("view/PainelFormUsuario.fxml"));
             Parent root = (Parent) loader.load();
@@ -154,27 +168,21 @@ public class UsuarioController implements Initializable {
         }
     }
     
-    public boolean validarSenha() {
-        if(tfSenha.getText().equals(tfSenha1.getText())) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
+   
     @FXML
     public void tratarBotaoSalvar(ActionEvent event) throws IOException {
         Stage stage = (Stage) painelUsuario.getScene().getWindow();
         
-        if(usuarioSelecionado == null && validarSenha()) //Se for cadastrar
+        if(usuarioSelecionado == null) //Se for cadastrar
         {
             try {
-                usuarioNegocio.salvar(new Usuario(
+                       usuarioNegocio.salvar(new Usuario(
                         Integer.parseInt(tfMatricula.getText()), 
                         tfNome.getText(),
                         tfCpf.getText(),
                         Integer.parseInt(tfTelefone.getText()),
                         tfSenha.getText(),
+                        tfEmail.getText(),
                         false
                         )           
                 );                
@@ -187,13 +195,14 @@ public class UsuarioController implements Initializable {
         else //Se for editar
         {
             try {
-                if(validarSenha()) {
-                    usuarioSelecionado.setNome(tfNome.getText());
+               
+                    usuarioSelecionado.setMatricula(Integer.parseInt(tfMatricula.getText()));
                     usuarioSelecionado.setCpf(tfCpf.getText());
                     usuarioSelecionado.setTelefone(Integer.parseInt(tfTelefone.getText()));
                     usuarioSelecionado.setSenha(tfSenha.getText());
+                    usuarioSelecionado.setEmail(tfEmail.getText());
                     usuarioNegocio.atualizar(usuarioSelecionado);
-                }
+                
                 
                          
                
@@ -219,6 +228,12 @@ public class UsuarioController implements Initializable {
 
     public void setUsuarioSelecionado(Usuario usuarioSelecionado) {
         this.usuarioSelecionado = usuarioSelecionado;
+        tfMatricula.setText(String.valueOf(usuarioSelecionado.getMatricula()));
+        tfNome.setText(usuarioSelecionado.getNome());
+        tfCpf.setText(usuarioSelecionado.getCpf());
+        tfTelefone.setText(String.valueOf(usuarioSelecionado.getTelefone()));
+        tfSenha.setText(usuarioSelecionado.getSenha());
+        tfEmail.setText(usuarioSelecionado.getEmail());
         
     }
     

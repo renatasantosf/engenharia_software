@@ -21,8 +21,8 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
         int id = 0;
         try {
             String sql = "INSERT INTO usuario ("
-                    + "matricula,nome,cpf,telefone,senha,status) "
-                    + "VALUES (?,?,?,?,?,?)";
+                    + "matricula,nome,cpf,telefone,senha,email,status) "
+                    + "VALUES (?,?,?,?,?,?,?)";
 
             //Foi criado um novo método conectar para obter o id
             conectarObtendoId(sql);
@@ -31,7 +31,8 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
             comando.setString(3, usuario.getCpf());
             comando.setInt(4, usuario.getTelefone());
             comando.setString(5, usuario.getSenha());
-            comando.setBoolean(6, usuario.isStatus());
+            comando.setString(6, usuario.getEmail());
+            comando.setBoolean(7, usuario.isStatus());
                              
             comando.executeUpdate();
             
@@ -65,7 +66,7 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
     @Override
     public void atualizar(Usuario usuario) {
         try {
-            String sql = "UPDATE usuario SET nome=?, cpf=?, telefone=?, senha=?, status=?"
+            String sql = "UPDATE usuario SET nome=?, cpf=?, telefone=?, senha=?,email=?, status=?"
                     + "WHERE matricula=?";
           
             conectar(sql);
@@ -73,8 +74,9 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
             comando.setString(2, usuario.getCpf());
             comando.setInt(3, usuario.getTelefone());
             comando.setString(4, usuario.getSenha());
-            comando.setBoolean(5, usuario.isStatus());
-            comando.setInt(6, usuario.getMatricula());
+            comando.setString(5, usuario.getEmail());
+            comando.setBoolean(6, usuario.isStatus());
+            comando.setInt(7, usuario.getMatricula());
             comando.executeUpdate();
 
         } catch (SQLException ex) {
@@ -103,10 +105,11 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
                 String cpf = resultado.getString("cpf");
                 int telefone = resultado.getInt("telefone");
                 String senha = resultado.getString("senha");
+                String email = resultado.getString("email");
                 boolean status = resultado.getBoolean("status");
                
 
-                Usuario usuario = new Usuario(matricula,nome,cpf,telefone,senha,status);
+                Usuario usuario = new Usuario(matricula,nome,cpf,telefone,senha,email,status);
 
                 listaUsuarios.add(usuario);
 
@@ -136,9 +139,10 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
                 String cpf = resultado.getString("cpf");
                 int telefone = resultado.getInt("telefone");
                 String senha = resultado.getString("senha");
+                String email = resultado.getString("email");
                 boolean status = resultado.getBoolean("status");
 
-                Usuario usuario = new Usuario(matricula,nome,cpf,telefone,senha,status);
+                Usuario usuario = new Usuario(matricula,nome,cpf,telefone,senha,email,status);
 
                 return usuario;
 
@@ -170,9 +174,10 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
                 String cpf = resultado.getString("cpf");
                 int telefone = resultado.getInt("telefone");
                 String senha = resultado.getString("senha");
+                String email = resultado.getString("email");
                 boolean status = resultado.getBoolean("status");
                
-                 Usuario usuario = new Usuario(matricula,nome,cpf,telefone,senha,status);
+                 Usuario usuario = new Usuario(matricula,nome,cpf,telefone,senha,email,status);
                 
 
                 listaUsuarios.add(usuario);
