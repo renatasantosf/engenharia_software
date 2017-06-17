@@ -60,6 +60,9 @@ public class LivroNegocio {
         return(livroDao.procurarPorTitulo(titulo));
     }
 
+    public List<Livro> procurarPorStatusDisponivel() throws NegocioException {
+        return(livroDao.procurarPorStatus());
+    }
     public boolean livroExiste(int codigo_exemplar) {
         Livro livro = livroDao.procurarPorCodigo(codigo_exemplar);
         return (livro != null);
@@ -94,4 +97,5 @@ public class LivroNegocio {
             throw new NegocioException("Exemplar existente.");
         }
     }
+    
 }

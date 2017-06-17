@@ -7,8 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane fx:id="painelMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="painelMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.senacrs.biblioteca.controller.PrincipalController">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="600.0">
          <items>
@@ -35,12 +34,12 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="184.0" text="Usuários">
+            <Button fx:id="btUsuario" mnemonicParsing="false" onAction="#tratarTelaUsuario" prefHeight="35.0" prefWidth="184.0" text="Usuários">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="184.0" text="Livros" GridPane.rowIndex="2">
+            <Button fx:id="btLivro" mnemonicParsing="false" onAction="#tratarTelaLivro" prefHeight="35.0" prefWidth="184.0" text="Livros" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -50,12 +49,12 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="184.0" text="Devoluções" GridPane.rowIndex="6">
+            <Button mnemonicParsing="false"  prefHeight="35.0" prefWidth="184.0" text="Devoluções" GridPane.rowIndex="6">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="184.0" text="Atrasos" GridPane.rowIndex="8">
+            <Button mnemonicParsing="false"  prefHeight="35.0" prefWidth="184.0" text="Atrasos" GridPane.rowIndex="8">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

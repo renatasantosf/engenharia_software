@@ -6,26 +6,28 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="principalLivro" prefHeight="525.0" prefWidth="1242.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.senacrs.biblioteca.controller.LivroController">
+<AnchorPane id="AnchorPane" fx:id="principalLivro" prefHeight="526.0" prefWidth="1302.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.senacrs.biblioteca.controller.LivroController">
    <children>
-      <ToolBar fx:id="toolPrincipal" prefHeight="41.0" prefWidth="1242.0">
+      <ToolBar fx:id="toolPrincipal" prefHeight="33.0" prefWidth="1302.0">
          <items>
             <Button fx:id="btIncluir" mnemonicParsing="false" onAction="#tratarBotaoCadastrar" text="Incluir" />
             <Button fx:id="btAlterar" mnemonicParsing="false" onAction="#tratarBotaoEditar" text="Alterar" />
             <Button fx:id="btRemover" mnemonicParsing="false" onAction="#tratarBotaoRemover" text="Remover" />
             <TextField fx:id="tfBuscaLivro" prefHeight="25.0" prefWidth="223.0" />
             <ComboBox fx:id="cbBusca" prefHeight="25.0" prefWidth="101.0" />
-            <Button mnemonicParsing="false" onAction="#tratarBotaoBuscar" text="Buscar" />
+            <Button fx:id="btBuscar" mnemonicParsing="false" onAction="#tratarBusca" text="Buscar" />
          </items>
       </ToolBar>
-      <TableView fx:id="tableViewUsuarios" layoutY="40.0" prefHeight="480.0" prefWidth="1242.0">
+      <TableView fx:id="tableViewLivros" layoutY="33.0" prefHeight="499.0" prefWidth="1302.0">
          <columns>
-            <TableColumn fx:id="tableColumnMatricula" prefWidth="118.0" text="Matrícula" />
-            <TableColumn fx:id="tableColumnNome" prefWidth="417.0" text="Nome" />
-            <TableColumn fx:id="tableColumnCpf" prefWidth="167.0" text="CPF" />
-            <TableColumn fx:id="tableColumnTelefone" prefWidth="176.0" text="Telefone" />
-            <TableColumn fx:id="tableColumnEmail" prefWidth="264.0" text="Email" />
-            <TableColumn fx:id="tableColumnStatus" prefWidth="99.0" text="Status" />
+            <TableColumn fx:id="tableColumnCodigo" prefWidth="84.0" text="Código" />
+            <TableColumn fx:id="tableColumnIsbn" prefWidth="193.0" text="ISBN" />
+            <TableColumn fx:id="tableColumnTitulo" prefWidth="301.0" text="Título" />
+            <TableColumn fx:id="tableColumnAutor" prefWidth="214.0" text="Autor" />
+            <TableColumn fx:id="tableColumnEditora" prefWidth="138.0" text="Editora" />
+            <TableColumn fx:id="tableColumnEdicao" prefWidth="61.0" text="Edição" />
+            <TableColumn fx:id="tableColumnCategoria" maxWidth="225.0" prefWidth="225.0" text="Categoria" />
+            <TableColumn fx:id="tableColumnStatus" prefWidth="85.0" text="Status" />
          </columns>
       </TableView>
    </children>

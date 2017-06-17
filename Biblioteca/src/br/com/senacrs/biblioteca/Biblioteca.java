@@ -16,7 +16,7 @@ public class Biblioteca extends Application  {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(this.getClass().getResource("view/PainelTabelaUsuario.fxml"));
+        Parent root = FXMLLoader.load(this.getClass().getResource("view/PainelPrincipal.fxml"));
         
         Scene scene = new Scene(root);
         

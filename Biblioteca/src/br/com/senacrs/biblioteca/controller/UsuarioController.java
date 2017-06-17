@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.senacrs.biblioteca.controller;
 
 import br.com.senacrs.biblioteca.Biblioteca;
@@ -11,12 +7,8 @@ import br.com.senacrs.biblioteca.negocio.NegocioException;
 import br.com.senacrs.biblioteca.negocio.UsuarioNegocio;
 import java.io.IOException;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,7 +29,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author renat
+ * @author Renata Fraga
  */
 public class UsuarioController implements Initializable {
 
@@ -102,7 +94,8 @@ public class UsuarioController implements Initializable {
         }
 
     }        
-
+    
+    
     private void carregarTableViewUsuarios() {
         tableColumnMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -117,7 +110,7 @@ public class UsuarioController implements Initializable {
         tableViewUsuarios.setItems(observableListaUsuarios);
     }
     
-     @FXML
+    @FXML
     private void buscarUsuarioPorMatricula(ActionEvent event) throws IOException, NegocioException {
         tableColumnMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
