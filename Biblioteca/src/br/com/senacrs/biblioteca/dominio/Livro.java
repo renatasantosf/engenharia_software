@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.senacrs.biblioteca.dominio;
 
 /**
@@ -29,14 +24,26 @@ public class Livro {
         this.autor = autor;
         this.status = false;
     }
-     public Livro(String isbn, String editora, String categoria, int edicao, String titulo, String autor) {
+     public Livro(String isbn, String editora, String categoria, int edicao, String titulo, String autor,boolean status) {
         this.isbn = isbn;
         this.editora = editora;
         this.categoria = categoria;
         this.edicao = edicao;
         this.titulo = titulo;
         this.autor = autor;
-        this.status = false;
+        this.status = status;
+    }
+     
+     public Livro(int codigo_exemplar, String isbn, String editora, String categoria, int edicao, String titulo, String autor
+     ,boolean status) {
+        this.codigo_exemplar = codigo_exemplar;
+        this.isbn = isbn;
+        this.editora = editora;
+        this.categoria = categoria;
+        this.edicao = edicao;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.status = status;
     }
 
     public int getCodigo_exemplar() {
@@ -102,6 +109,7 @@ public class Livro {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
     
      
     

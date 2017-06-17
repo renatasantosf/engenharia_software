@@ -18,7 +18,6 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
 
     @Override
     public void salvar(Usuario usuario) {
-        int id = 0;
         try {
             String sql = "INSERT INTO usuario ("
                     + "matricula,nome,cpf,telefone,senha,email,status) "
