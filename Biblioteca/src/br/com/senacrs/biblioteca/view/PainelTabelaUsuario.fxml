@@ -13,6 +13,8 @@
           <Button fx:id="btIncluir" mnemonicParsing="false" onAction="#tratarBotaoCadastrar" text="Incluir" />
             <Button fx:id="btAlterar" mnemonicParsing="false" onAction="#tratarBotaoEditar" text="Alterar" />
             <Button fx:id="btRemover" mnemonicParsing="false" onAction="#tratarBotaoRemover" text="Remover" />
+            <TextField fx:id="tfBuscaMatricula" prefHeight="25.0" prefWidth="223.0" />
+            <Button mnemonicParsing="false" onAction="#buscarUsuarioPorMatricula" text="Buscar Matrícula" />
         </items>
       </ToolBar>
       <TableView fx:id="tableViewUsuarios" layoutY="40.0" prefHeight="480.0" prefWidth="1242.0">

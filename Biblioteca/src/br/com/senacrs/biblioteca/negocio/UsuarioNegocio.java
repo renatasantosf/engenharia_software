@@ -54,7 +54,7 @@ public class UsuarioNegocio {
         if (matricula== 0) {
             throw new NegocioException("Usuário não encontrado");
         }
-        return (usuario);
+        return (usuarioDao.procurarPorMatricula(matricula));
     }
 
     public List<Usuario> procurarPorNome(String nome) throws NegocioException {

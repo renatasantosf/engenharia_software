@@ -77,7 +77,7 @@ public class UsuarioController implements Initializable {
     @FXML
     private TextField tfSenha;
     @FXML
-    private TextField tfSenha1;
+    private TextField tfBuscaMatricula;
     
     @FXML
     private Button btLimpar;
@@ -111,12 +111,22 @@ public class UsuarioController implements Initializable {
         tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         tableColumnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         
-        
-        
-
         listaUsuarios = usuarioNegocio.listar();
 
         observableListaUsuarios = FXCollections.observableArrayList(listaUsuarios);
+        tableViewUsuarios.setItems(observableListaUsuarios);
+    }
+    
+     @FXML
+    private void buscarUsuarioPorMatricula(ActionEvent event) throws IOException, NegocioException {
+        tableColumnMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
+        tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tableColumnCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        tableColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+        tableColumnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        
+        usuarioSelecionado = usuarioNegocio.procurarPorMatricula(Integer.parseInt(tfBuscaMatricula.getText()));
+        observableListaUsuarios = FXCollections.observableArrayList(usuarioSelecionado);
         tableViewUsuarios.setItems(observableListaUsuarios);
     }
 
@@ -197,15 +207,13 @@ public class UsuarioController implements Initializable {
             try {
                
                     usuarioSelecionado.setMatricula(Integer.parseInt(tfMatricula.getText()));
+                    usuarioSelecionado.setNome(tfNome.getText());
                     usuarioSelecionado.setCpf(tfCpf.getText());
-                    usuarioSelecionado.setTelefone(Integer.parseInt(tfTelefone.getText()));
+                    usuarioSelecionado.setTelefone(Integer.parseInt(tfTelefone.getText()));                
                     usuarioSelecionado.setSenha(tfSenha.getText());
                     usuarioSelecionado.setEmail(tfEmail.getText());
                     usuarioNegocio.atualizar(usuarioSelecionado);
-                
-                
-                         
-               
+                              
                 stage.close();
             } catch (NegocioException ex) {
                 JOptionPane.showMessageDialog(null,ex.getMessage());
