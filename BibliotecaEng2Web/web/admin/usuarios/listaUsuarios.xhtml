@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="top"></ui:define>
+            <ui:define name="content">
+                <div class="tabelaUsuarios">
+                    <h:form >
+                        <h:dataTable var="usuario" value="#{usuarioMB.listaUsuarios}" styleClass="table table-striped" >
+                            <f:facet name="header">
+                                <h:outputText value="Lista de Usuarios" style="font-size: 20px" />
+                            </f:facet>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome" />
+                                </f:facet>
+                                <h:outputText id="idNome" value="#{usuario.nome}"  />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Telefone" />
+                                </f:facet>
+                                <h:outputText id="idTelefone" value="#{usuario.telefone}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Email" />
+                                </f:facet>
+                                <h:outputText id="idEmail" value="#{usuario.email}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Sexo" />
+                                </f:facet>
+                                <h:outputText  id="idSexo" value="#{usuario.sexoString}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Estado" />
+                                </f:facet>
+                                <h:outputText id="idEstado" value="#{usuario.estado}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Login" />
+                                </f:facet>
+                                <h:outputText  id="idLogin" value="#{usuario.login}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Acesso admin" />
+                                </f:facet>
+                                <span style="margin-left: 27px; padding-top: 7px; padding-bottom: 7px; padding-left: 12px; padding-right: 12px" Class="label #{usuario.label}">#{usuario.adminString}</span>
+
+                            </h:column>
+                            <h:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Operacao" />
+                                </f:facet>
+                                <h:commandLink value="Editar " style="color: #4eb25e" action="#{usuarioMB.editarUsuario(usuario)}"/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <h:commandLink onclick="funcaoDeletarUsuario()" id="remover" value="Remover" style="color: #4eb25e" action="#{usuarioMB.removerUsuario(usuario)}"/>
+                            </h:column>
+                        </h:dataTable>
+                        <h:button value="Voltar" style="align: right; width: 120px; margin-right: 5px" styleClass="btn btn-success" outcome="/admin/index"/>
+                    </h:form>                      
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

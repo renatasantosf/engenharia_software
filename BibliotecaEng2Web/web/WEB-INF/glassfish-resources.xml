@@ -8,7 +8,7 @@
     <property name="URL" value="jdbc:postgresql://localhost:5432/biblioteca"/>
     <property name="User" value="postgres"/>
     <property name="Password" value="123456"/>
-    <property name="databaseName" value="biblioteca"/>
+    <property name="databaseName" value="biblioteca1"/>
     <property name="serverName" value="localhost"/>
     <property name="PortNumber" value="5432"/>
   </jdbc-connection-pool>
