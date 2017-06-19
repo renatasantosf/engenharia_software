@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="top"></ui:define>
+            <ui:define name="content">
+                <div class="tituloClientes">Alterar Cliente</div>
+                <div class="cadastroClientes">
+                    <h:form>
+                        <h:panelGrid columns="2" >
+                            <h:outputLabel for="idMatricula" value="Matricula" style="font-weight: normal"/>
+                            <h:inputText readonly="true" id="idMatricula" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{clienteMB.clienteSelecionado.matricula}" />
+                            <h:outputLabel for="idNome" value="Nome" style="font-weight: normal"/>
+                            <h:inputText id="idNome" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{clienteMB.clienteSelecionado.nome}"  />
+                            <h:outputLabel for="idCPF" value="CPF" style="font-weight: normal"/>
+                            <h:inputText id="idCPF" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{clienteMB.clienteSelecionado.cpf}"  />
+                            <h:outputLabel for="idEmail" value="E-mail" style="font-weight: normal"/>
+                            <h:inputText id="idEmail" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{clienteMB.clienteSelecionado.emailCliente}"  />
+                            <h:outputLabel for="idTelefone" value="Telefone" style="font-weight: normal"/>
+                            <h:inputText id="idTelefone" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{clienteMB.clienteSelecionado.telefone}" />                          
+                        </h:panelGrid>
+                        <div class="botaoCadastroClientes">
+                            <h:commandButton value="Confirmar" onclick="funcaoConfirmarCadastro()" style="width: auto; " styleClass="btn btn-success" action="#{clienteMB.atualizarCliente()}"/>                            
+                            <h:button value="Voltar" style="width: auto; margin-left: 5px" styleClass="btn btn-success" outcome="/admin/clientes/listaClientes"/>
+                        </div>
+                    </h:form>
+                    <div class="alerta">
+                        <h:messages id="idMensagem" showDetail="true" errorClass="mensagem" styleClass= "alert alert-danger"/>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
