@@ -134,7 +134,7 @@ public class ClienteMB implements Serializable {
         return ("/usuario/retiradas/buscaCliente?faces-redirect=true");
     }
 
-    public void removerCliente(Cliente cliente){// verifica se este cliente está relacionado a tabela devolução
+    public void removerCliente(Cliente cliente){// verifica se este cliente estï¿½ relacionado a tabela devolucao
         List<Devolucao> pesquisaCascade = devolucaoRN.buscarClienteExclusao(cliente.getMatricula());
         for (Devolucao devolucao : pesquisaCascade) {
             devolucaoRN.remover(devolucao);      

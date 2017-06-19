@@ -153,7 +153,7 @@ public class DevolucaoMB implements Serializable {
 
     public String getAtrasadoString(Devolucao d){
         if(d.getDataDevolucao().before(d.getDataDevolvido())) return "Sim";
-        else return "Não";
+        else return "NÃ£o";
     }
 
     public String getLabel(Devolucao d){

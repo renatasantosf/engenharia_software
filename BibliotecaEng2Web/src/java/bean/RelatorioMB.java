@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
-@ApplicationScoped //Application, pois os usuários cadastrados deverão permanecer mesmo se fizer logout.
+@ApplicationScoped //Application, pois os usuarios cadastrados deverï¿½o permanecer mesmo se fizer logout.
 public class RelatorioMB {
 
     @Inject

@@ -136,7 +136,7 @@ public class Livro implements Serializable {
     
     public String getDisponivelString(){
         if(disponivel) return "Sim";
-        else return "Não";
+        else return "Nao";
     }
     
     public String getLabel(){

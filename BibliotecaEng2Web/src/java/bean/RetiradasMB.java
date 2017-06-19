@@ -40,7 +40,7 @@ public class RetiradasMB implements Serializable {
     private Livro livroSelecionado;
     long DAY_IN_MS = 1000 * 60 * 60 * 24;
     Date periodoEmprestimo = new Date(System.currentTimeMillis() + 7 * DAY_IN_MS); // uma semana
-    private Date dataLiberacao = new Date(System.currentTimeMillis() + 8 * DAY_IN_MS); //prazo que o livro ficará disponível novamente
+    private Date dataLiberacao = new Date(System.currentTimeMillis() + 8 * DAY_IN_MS); //prazo que o livro ficara disponivel novamente
     Date dataAtual = new Date(System.currentTimeMillis());
 
     //CRUD
@@ -170,7 +170,7 @@ public class RetiradasMB implements Serializable {
             return ("/usuario/retiradas/confirmaRetirada?faces-redirect=true");            
         }
         FacesMessage mensagemRet = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                "Erro! É necessario pesquisar antes!", "É necessario pesquisar antes!");
+                "Erro! e necessario pesquisar antes!", "e necessario pesquisar antes!");
         contexto.addMessage("idMensagem", mensagemRet);
             if (loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
                 return ("/admin/retiradas/retirada");
@@ -243,7 +243,7 @@ public class RetiradasMB implements Serializable {
 
     public String getAtrasadoString(Retiradas r){
         if(r.getDataDevolucao().before(dataAtual)) return "Sim";
-        else return "Não";
+        else return "Nao";
     }
 
     public String getLabel(Retiradas r){

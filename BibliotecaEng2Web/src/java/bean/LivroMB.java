@@ -114,7 +114,7 @@ public class LivroMB implements Serializable {
         return("/admin/livros/listaLivros?faces-redirect=true");
     }
 
-    public void removerLivro(Livro livro){// verifica se este livro está relacionado a tabela devolução
+    public void removerLivro(Livro livro){// verifica se este livro esta relacionado a tabela devoluï¿½ï¿½o
         List<Devolucao> pesquisaCascade = devolucaoRN.buscarLivroExclusao(livro.getId());
         for (Devolucao devolucao : pesquisaCascade) {
             devolucaoRN.remover(devolucao);

@@ -36,7 +36,7 @@ public class Cliente implements Serializable {
     /**
      * Construtor para inicializar cliente
      *
-     * @param matricula identifica a matrícula de uma pessoa.
+     * @param matricula identifica a matricula de uma pessoa.
      * @param nome identifica o nome de uma pessoa.
      * @param telefone identifica telefone de uma pessoa.
      *

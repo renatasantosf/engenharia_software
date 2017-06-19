@@ -39,14 +39,14 @@ public class DevolucaoRN extends AbstractRN<Devolucao>{
             super.atualizar(l);
     }
     
-    //metodo usado para deletar livro em cascata = (cascade = {CascadeType.PERSIST}) não funciona
+    //metodo usado para deletar livro em cascata = (cascade = {CascadeType.PERSIST}) nao funciona
     public List<Devolucao> buscarLivroExclusao(Long id) {
         Query query = manager.createQuery("SELECT p FROM Devolucao p WHERE p.livro.id = :id");
         query.setParameter("id", id);
         return query.getResultList();
     }
     
-    //metodo usado para deletar cliente em cascata = (cascade = {CascadeType.PERSIST}) não funciona
+    //metodo usado para deletar cliente em cascata = (cascade = {CascadeType.PERSIST}) nao funciona
     public List<Devolucao> buscarClienteExclusao(Long matricula) {
         Query query = manager.createQuery("SELECT p FROM Devolucao p WHERE p.cliente.matricula = :matricula");
         query.setParameter("matricula", matricula);
