@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="utf-8"></meta>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="top"></ui:define>
+            <ui:define name="content">
+                <div class="tabelaRetirada"> 
+                    <h:form>
+                        <div class="cadastroRetirada">
+                            <div class="tituloRetirada">Nova Retirada</div>
+                            <h:panelGrid columns="5" style="margin-left: 7px; margin-top: 29px;" >
+                                <h:outputLabel for="idMatricula" value="Buscar Cliente" style="font-weight: normal"/>
+                                <h:inputText id="idMatricula" style="width: 190px; margin-left: 20px" styleClass="form-control" required="true"  requiredMessage="Erro! Campo 'Matrícula' vazio!" a:placeholder="Digite a Matrícula"  value="#{retiradasMB.matriculaCliente}" />
+                                <h:outputLabel  for="idLivro"/>
+                                <h:selectOneMenu value="#{retiradasMB.livroSelecionado}" id="idLivro" styleClass="btn btn-success" style="margin-left: 60px; width: 300px" required="true" requiredMessage="Erro! Selecione um livro disponível!">
+                                    <f:selectItem itemLabel="Selecione um Livro disponível" noSelectionOption="true"  />
+                                    <f:selectItems value="#{retiradasMB.livrosDisponiveis}" 
+                                                   var="livro" itemValue="#{livro}"
+                                                   itemLabel="#{livro.nome}"/>
+                                </h:selectOneMenu>
+                                <h:commandButton value="Pesquisar" style="width: auto; margin-left: 45px" styleClass="btn btn-success" action="#{retiradasMB.adicionarPesquisa()}"/>
+                            </h:panelGrid>
+                        </div>
+                        <div class="alertaRetirada">
+                            <h:messages id="MensagemRet" showDetail="false" errorClass="mensagemRet" styleClass= "alert alert-danger"/>
+                        </div>
+                        <div class="tabelaRetiradaPesquisa">
+                            <h:dataTable var="pesquisa" value="#{retiradasMB.pesquisa}" styleClass="table table-striped" >
+                                <f:facet name="header">
+                                    <h:outputText value="Confirmar Retirada" style="font-size: 18px; padding-left: 12px" />
+                                </f:facet>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Cliente" />
+                                    </f:facet>
+                                    <h:outputText id="idCliente" value="#{pesquisa.cliente.nome}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Título" />
+                                    </f:facet>
+                                    <h:outputText id="idTitulo" value="#{pesquisa.livro.nome}"  />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data Retirada" />
+                                    </f:facet>
+                                    <h:outputText id="idDataret" value="#{retiradasMB.formataData(pesquisa.dataRetirada)}"  />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data devolução" />
+                                    </f:facet>                                
+                                    <h:outputText id="idDatadev" value="#{retiradasMB.formataData(pesquisa.dataDevolucao)}"  />
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton id="limpar" value="Limpar pesquisa" style="align: right; margin-right: -57px;" styleClass="btn btn-danger" action="#{retiradasMB.limparPesquisa(pesquisa)}"/>
+                                </h:column>
+                            </h:dataTable>                              
+                        </div>
+                        <div class="tabelaRetiradaPesquisaCentro">                            
+                            <h:button value="Voltar" style="align: right; width: 120px; margin-left: 650px; margin-right: 5px" styleClass="btn btn-success" outcome="/admin/index"/>
+                            <h:commandButton value="Confirmar" style="width: 120px; align: right; " styleClass="btn btn-success" action="#{retiradasMB.adicionarRetirada()}"/>
+                        </div>
+                        <div class="tabelaRetiradaPesquisaTexto"> 
+                            <p>*Para concluir o empréstimo, é necessário confirmar os dados clicando no botão "Pesquisar".</p>
+                        </div>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
