@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/engenharia_software/Biblioteca/src/br/com/senacrs/biblioteca/dao/impl_BD/UsuarioDaoBd.java</file>
-            <file>file:/C:/engenharia_software/Biblioteca/src/br/com/senacrs/biblioteca/Biblioteca.java</file>
-            <file>file:/C:/engenharia_software/Biblioteca/src/br/com/senacrs/biblioteca/dao/impl_BD/LivroDaoBd.java</file>
+            <file>file:/C:/engenharia_software/Biblioteca/src/br/com/senacrs/biblioteca/controller/EmprestimoController.java</file>
             <file>file:/C:/engenharia_software/Biblioteca/src/br/com/senacrs/biblioteca/controller/LivroController.java</file>
-            <file>file:/C:/engenharia_software/Biblioteca/src/br/com/senacrs/biblioteca/controller/UsuarioController.java</file>
-            <file>file:/C:/engenharia_software/Biblioteca/src/br/com/senacrs/biblioteca/controller/PrincipalController.java</file>
         </group>
     </open-files>
 </project-private>

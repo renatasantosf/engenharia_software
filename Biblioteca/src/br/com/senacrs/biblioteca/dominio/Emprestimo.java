@@ -19,13 +19,15 @@ public class Emprestimo {
     private LocalDate dt_emprestimo;
     private LocalDate dt_entrega;
 
-    public Emprestimo(int codigo, Usuario usuario, Livro livro, LocalDate dt_emprestimo, LocalDate dt_entrega) {
+    public Emprestimo(int codigo, Usuario usuario, Livro livro) {
         this.codigo = codigo;
         this.usuario = usuario;
         this.livro = livro;
-        this.dt_emprestimo = dt_emprestimo;
-        this.dt_entrega = dt_entrega;
+        this.dt_emprestimo = LocalDate.now();
+        this.dt_entrega = dt_emprestimo.plusDays(7);
+         
     }
+    
     
     
      public Emprestimo(Usuario usuario, Livro livro, LocalDate dt_emprestimo, LocalDate dt_entrega) {

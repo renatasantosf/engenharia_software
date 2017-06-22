@@ -12,7 +12,7 @@ import java.util.List;
  * @author renat
  */
 public interface UsuarioDao extends Dao<Usuario>{
-    public Usuario procurarPorMatricula(int matricula);
-    public List<Usuario> procurarPorNome(String nome);
-    
+   public Usuario procurarPorMatricula(int matricula);
+   public List<Usuario> procurarPorNome(String nome);
+      
 }
