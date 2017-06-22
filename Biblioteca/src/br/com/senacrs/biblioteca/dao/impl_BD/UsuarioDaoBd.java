@@ -34,7 +34,7 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
             comando.setBoolean(7, usuario.isStatus());
                              
             comando.executeUpdate();
-            
+            JOptionPane.showMessageDialog(null,"Usuário cadastrado com sucesso.");
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Erro ao incluir Usuário.");
@@ -52,7 +52,7 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
             conectar(sql);
             comando.setInt(1, usuario.getMatricula());
             comando.executeUpdate();
-
+            JOptionPane.showMessageDialog(null,"Usuário removido com sucesso.");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Erro ao remover Usuário.");
             throw new RuntimeException(ex);
@@ -77,6 +77,7 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
             comando.setBoolean(6, usuario.isStatus());
             comando.setInt(7, usuario.getMatricula());
             comando.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Usuário alterado com sucesso.");
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Erro ao atualizar Usuário.");

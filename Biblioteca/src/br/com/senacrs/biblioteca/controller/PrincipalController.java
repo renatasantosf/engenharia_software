@@ -1,6 +1,7 @@
 
 package br.com.senacrs.biblioteca.controller;
 
+import br.com.senacrs.biblioteca.Biblioteca;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,7 +36,10 @@ public class PrincipalController implements Initializable {
     
     @FXML
     private void tratarTelaUsuario(ActionEvent event) throws IOException {
-        FXMLLoader.load(getClass().getResource("/view/PainelTabelaUsuario.fxml"));
+      Stage stage = (Stage) painelMenu.getScene().getWindow();
+        stage.setTitle("Livros");
+        Parent painelTelaProxima = FXMLLoader.load(Biblioteca.class.getResource("view/PainelTabelaUsuario.fxml"));
+        stage.setScene(new Scene(painelTelaProxima));
 
     }
     
@@ -43,7 +47,7 @@ public class PrincipalController implements Initializable {
     private void tratarTelaLivro(ActionEvent event) throws IOException {
         Stage stage = (Stage) painelMenu.getScene().getWindow();
         stage.setTitle("Livros");
-        Parent painelTelaProxima = FXMLLoader.load(this.getClass().getResource("PainelTabelaLivro.fxml"));
+        Parent painelTelaProxima = FXMLLoader.load(Biblioteca.class.getResource("view/PainelTabelaLivro.fxml"));
         stage.setScene(new Scene(painelTelaProxima));
 
     }

@@ -16,6 +16,7 @@ public class LivroDaoBd extends DaoBd<Livro> implements LivroDao{
 
     @Override
     public void salvar(Livro livro) {
+        int id = 0;
         try {
             String sql = "INSERT INTO livro ("
                     + "isbn,editora,categoria,edicao,titulo,autor,status) "
@@ -31,6 +32,17 @@ public class LivroDaoBd extends DaoBd<Livro> implements LivroDao{
             comando.setString(6, livro.getAutor());
             comando.setBoolean(7, false);
             comando.executeUpdate();
+            ResultSet resultado = comando.getGeneratedKeys();
+            if (resultado.next()) {
+                //seta o id para o objeto
+                id = resultado.getInt(1);
+                livro.setCodigo_exemplar(id);
+                JOptionPane.showMessageDialog(null,"Livro cadastrado com sucesso.");
+            }
+            else{
+                System.err.println("Erro de Sistema - Nao gerou o id conforme esperado!");
+                throw new BDException("Nao gerou o id conforme esperado!");
+            }
             
 
         } catch (SQLException ex) {
@@ -50,7 +62,7 @@ public class LivroDaoBd extends DaoBd<Livro> implements LivroDao{
             conectar(sql);
             comando.setInt(1, livro.getCodigo_exemplar());
             comando.executeUpdate();
-
+            JOptionPane.showMessageDialog(null,"Livro removido com sucesso.");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Erro ao remover Livro.");
             throw new RuntimeException(ex);
@@ -77,7 +89,7 @@ public class LivroDaoBd extends DaoBd<Livro> implements LivroDao{
             comando.setString(6, livro.getAutor());
             comando.setBoolean(7, livro.isStatus());
             comando.executeUpdate();
-
+            JOptionPane.showMessageDialog(null,"Livro alterado com sucesso.");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Erro ao atualizar Usuário.");
             throw new RuntimeException(ex);
@@ -163,9 +175,8 @@ public class LivroDaoBd extends DaoBd<Livro> implements LivroDao{
     }
 
     @Override
-    public List<Livro> procurarPorTitulo(String titulo) {
-         List<Livro> listaLivros = new ArrayList<>();
-      
+    public Livro procurarPorTitulo(String titulo) {
+          
         String sql = "SELECT * FROM livro WHERE titulo = ?";
 
         try {
@@ -186,7 +197,7 @@ public class LivroDaoBd extends DaoBd<Livro> implements LivroDao{
                 Livro livro = new Livro(codigo_exemplar,isbn,editora,categoria,edicao,titulo,
                 autor,status);
 
-                listaLivros.add(livro);
+                return livro;
 
             }
 
@@ -197,47 +208,8 @@ public class LivroDaoBd extends DaoBd<Livro> implements LivroDao{
             fecharConexao();
         }
 
-        return (listaLivros);
+        return (null);
       
     }
 
-    @Override
-    public List<Livro> procurarPorStatus() {
-       List<Livro> listaLivros = new ArrayList<>();
-      
-        String sql = "SELECT * FROM livro WHERE status = ?";
-
-        try {
-            conectar(sql);
-            comando.setBoolean(1,false);
-            ResultSet resultado = comando.executeQuery();
-
-            while (resultado.next()) {
-                int codigo_exemplar = resultado.getInt("codigo_exemplar");
-                String isbn = resultado.getString("isbn");
-                String editora = resultado.getString("editora");
-                String categoria = resultado.getString("categoria");
-                int edicao = resultado.getInt("edicao");
-                String titulo = resultado.getString("titulo");
-                String autor = resultado.getString("autor");
-                boolean status = resultado.getBoolean("status");
-                
-
-                Livro livro = new Livro(codigo_exemplar,isbn,editora,categoria,edicao,titulo,
-                autor,status);
-
-                listaLivros.add(livro);
-
-            }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Erro ao buscar livros.");
-            throw new RuntimeException(ex);
-        } finally {
-            fecharConexao();
-        }
-
-        return (listaLivros);
-    }
-    
 }

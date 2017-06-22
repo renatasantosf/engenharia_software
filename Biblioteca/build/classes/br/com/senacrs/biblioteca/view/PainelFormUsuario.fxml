@@ -48,17 +48,17 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="tfNome" prefHeight="25.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="tfMatricula" maxWidth="-Infinity" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="1" />
-            <TextField fx:id="tfCpf" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="tfTelefone" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="156.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="tfSenha" maxWidth="-Infinity" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label prefHeight="17.0" prefWidth="200.0" text="Email:" GridPane.rowIndex="4">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="tfEmail" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="tfMatricula" maxWidth="-Infinity" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="1" />
+            <TextField fx:id="tfNome" maxWidth="-Infinity" prefHeight="25.0" prefWidth="399.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tfCpf" maxWidth="-Infinity" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tfTelefone" maxWidth="-Infinity" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="tfEmail" maxWidth="-Infinity" prefHeight="25.0" prefWidth="399.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="tfSenha" maxWidth="-Infinity" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <Button fx:id="btLimpar" layoutX="324.0" layoutY="316.0" mnemonicParsing="false" onAction="#tratarBotaoCancelar" prefHeight="32.0" prefWidth="111.0" text="FECHAR" />

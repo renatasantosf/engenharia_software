@@ -87,7 +87,7 @@ public class UsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         usuarioNegocio = new UsuarioNegocio();
-
+        
         //Codigo meio redundante - por isso as vezes é melhor um controller para cada view 
         if (tableViewUsuarios != null) {
             carregarTableViewUsuarios();

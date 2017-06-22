@@ -3,6 +3,7 @@ package br.com.senacrs.biblioteca.negocio;
 import br.com.senacrs.biblioteca.dao.UsuarioDao;
 import br.com.senacrs.biblioteca.dao.impl_BD.UsuarioDaoBd;
 import br.com.senacrs.biblioteca.dominio.Usuario;
+import br.com.senacrs.biblioteca.validacao.ValidaCpf;
 import java.util.List;
 
 /**
@@ -11,6 +12,7 @@ import java.util.List;
  */
 public class UsuarioNegocio {
     private UsuarioDao usuarioDao;
+    private ValidaCpf validaCpf = new ValidaCpf();
 
     public UsuarioNegocio() {
         usuarioDao = new UsuarioDaoBd();
@@ -77,6 +79,10 @@ public class UsuarioNegocio {
         }
         if (usuario.getCpf() == null || usuario.getCpf().isEmpty()) {
             throw new NegocioException("Campo cpf nao informado");
+        } 
+        if(!validaCpf.isCPF(usuario.getCpf())) {
+            throw new NegocioException("CPF inválido.");
+            
         }
         if (usuario.getTelefone() == 0) {
             throw new NegocioException("Campo telefone nao informado");

@@ -43,9 +43,6 @@ public class LivroNegocio {
     }
 
     public Livro procurarPorCodigo(int codigo) throws NegocioException {
-        if (codigo == 0) {
-            throw new NegocioException("Campo código exemplar não informado.");
-        }
         Livro livro = livroDao.procurarPorCodigo(codigo);
         if (codigo== 0) {
             throw new NegocioException("Exemplar não encontrado");
@@ -53,25 +50,17 @@ public class LivroNegocio {
         return (livroDao.procurarPorCodigo(codigo));
     }
 
-    public List<Livro> procurarPorTitulo(String titulo) throws NegocioException {
-        if (titulo == null || titulo.isEmpty()) {
-            throw new NegocioException("Campo titulo não informado");
-        }
+    public Livro procurarPorTitulo(String titulo) throws NegocioException {
         return(livroDao.procurarPorTitulo(titulo));
     }
 
-    public List<Livro> procurarPorStatusDisponivel() throws NegocioException {
-        return(livroDao.procurarPorStatus());
-    }
+   
     public boolean livroExiste(int codigo_exemplar) {
         Livro livro = livroDao.procurarPorCodigo(codigo_exemplar);
         return (livro != null);
     }
 
     private void validarCamposObrigatorios(Livro livro) throws NegocioException {
-        if (livro.getCodigo_exemplar()== 0) {
-            throw new NegocioException("Campo exemplar não informado");
-        }
         if (livro.getIsbn() == null || livro.getIsbn().isEmpty()) {
             throw new NegocioException("Campo isbn não informado");
         }

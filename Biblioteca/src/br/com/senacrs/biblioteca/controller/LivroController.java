@@ -57,8 +57,11 @@ public class LivroController  implements Initializable {
     private TextField tfBuscaLivro;
     @FXML
     private Button btBuscar;
+    
     @FXML
     private ComboBox cbBusca;
+
+    
 
     @FXML
     private AnchorPane formLivro;
@@ -77,9 +80,7 @@ public class LivroController  implements Initializable {
     @FXML
     private TextField tfCategoria;
    
-    @FXML
-    private TextField tfBuscaMatricula;
-    
+        
     @FXML
     private Button btFechar;
     
@@ -92,24 +93,26 @@ public class LivroController  implements Initializable {
 
     private ObservableList<Livro> observableListaLivros;
     private LivroNegocio livroNegocio;
-
+    
+    ObservableList<String> lista = FXCollections.observableArrayList("Código","Título");
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+               
        livroNegocio = new LivroNegocio();
-
-        //Codigo meio redundante - por isso as vezes é melhor um controller para cada view 
+       
         if (tableViewLivros != null) {
+             cbBusca.setItems(lista);
             carregarTableViewLivros();
         }
         
-       cbBusca.setEditable(true);
-       cbBusca.getItems().addAll("Código","Titulo","Status");
-
     }        
 
     
     @FXML
     private void carregarTableViewLivros() {
+        
         tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo_exemplar"));
         tableColumnIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         tableColumnTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
@@ -120,13 +123,12 @@ public class LivroController  implements Initializable {
         tableColumnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         
         listaLivros = livroNegocio.listar();
-
         observableListaLivros = FXCollections.observableArrayList(listaLivros);
         tableViewLivros.setItems(observableListaLivros);
     }
     
      @FXML
-     private void tratarBusca(ActionEvent event) throws IOException, NegocioException {
+     private void tratarBusca(ActionEvent event) throws NegocioException {
         if(cbBusca.getValue().equals("Código")) {
             tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo_exemplar"));
             tableColumnIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
@@ -138,38 +140,27 @@ public class LivroController  implements Initializable {
             tableColumnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
             livroSelecionado = livroNegocio.procurarPorCodigo(Integer.parseInt(tfBuscaLivro.getText()));
-
-            observableListaLivros = FXCollections.observableArrayList(livroSelecionado);
-            tableViewLivros.setItems(observableListaLivros);
-        }else if(cbBusca.getValue().equals("Título")) {
-            tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo_exemplar"));
-            tableColumnIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
-            tableColumnTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-            tableColumnAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
-            tableColumnEditora.setCellValueFactory(new PropertyValueFactory<>("editora"));
-            tableColumnEdicao.setCellValueFactory(new PropertyValueFactory<>("edicao"));
-            tableColumnCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
-            tableColumnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-
-            listaLivros = livroNegocio.procurarPorTitulo(tfBuscaLivro.getText());
-
-            observableListaLivros = FXCollections.observableArrayList(livroSelecionado);
-            tableViewLivros.setItems(observableListaLivros);
-        } else if(cbBusca.getValue().equals("Status")) {
-            tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo_exemplar"));
-            tableColumnIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
-            tableColumnTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-            tableColumnAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
-            tableColumnEditora.setCellValueFactory(new PropertyValueFactory<>("editora"));
-            tableColumnEdicao.setCellValueFactory(new PropertyValueFactory<>("edicao"));
-            tableColumnCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
-            tableColumnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-
-            listaLivros = livroNegocio.procurarPorStatusDisponivel();
-
             observableListaLivros = FXCollections.observableArrayList(livroSelecionado);
             tableViewLivros.setItems(observableListaLivros);
             
+        }else if(cbBusca.getValue().equals("Título")) {
+            
+            tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo_exemplar"));
+            tableColumnIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+            tableColumnTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+            tableColumnAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
+            tableColumnEditora.setCellValueFactory(new PropertyValueFactory<>("editora"));
+            tableColumnEdicao.setCellValueFactory(new PropertyValueFactory<>("edicao"));
+            tableColumnCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+            tableColumnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+            livroSelecionado = livroNegocio.procurarPorTitulo(tfBuscaLivro.getText());
+            observableListaLivros = FXCollections.observableArrayList(livroSelecionado);
+            tableViewLivros.setItems(observableListaLivros);
+            
+                    
+        } else {
+            JOptionPane.showMessageDialog(null,"Busca não encontrada.");
         }
            
     }
@@ -185,7 +176,6 @@ public class LivroController  implements Initializable {
         stage.showAndWait();
         carregarTableViewLivros();
     }
-
     @FXML
     public void tratarBotaoEditar(ActionEvent event) throws IOException {
         livroSelecionado = tableViewLivros.getSelectionModel().getSelectedItem();
@@ -267,7 +257,7 @@ public class LivroController  implements Initializable {
     }
 
     @FXML
-    public void tratarBotaoCancelar(ActionEvent event) throws IOException {
+    public void tratarBotaoFechar(ActionEvent event) throws IOException {
         Stage stage = (Stage) formLivro.getScene().getWindow();
         stage.close();
 
@@ -282,7 +272,7 @@ public class LivroController  implements Initializable {
         tfIsbn.setText(livroSelecionado.getIsbn());
         tfEditora.setText(livroSelecionado.getEditora());
         tfCategoria.setText(livroSelecionado.getCategoria());
-        tfEdicao.setText(String.valueOf(tfEdicao.getText()));
+        tfEdicao.setText(String.valueOf(livroSelecionado.getEdicao()));
         tfTitulo.setText(livroSelecionado.getTitulo());
         tfAutor.setText(livroSelecionado.getAutor());
     }
