@@ -23,7 +23,7 @@ public class Livro implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private static int CODIGO_GERADO = 1;
-    private String isbn, nome, autor, editora, ano;
+    private String isbn, nome, autor, editora, categoria;
     private int retiradas;
     private boolean disponivel = true;
     @Temporal (value=TemporalType.DATE)
@@ -69,8 +69,8 @@ public class Livro implements Serializable {
         this.editora = editora;
     }
 
-    public void setAno(String ano) {
-        this.ano = ano;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     /**
@@ -114,8 +114,8 @@ public class Livro implements Serializable {
      *
      * @return o ISBN de um livro
      */
-    public String getAno() {
-        return ano;
+    public String getCategoria() {
+        return categoria;
     }
     
     public boolean isDisponivel() {
@@ -163,7 +163,7 @@ public class Livro implements Serializable {
 
     @Override
     public String toString() {
-        return "Livro{" + "isbn=" + isbn + ", nome=" + nome + ", autor=" + autor + ", editora=" + editora + ", ano=" + ano + '}';
+        return "Livro{" + "isbn=" + isbn + ", nome=" + nome + ", autor=" + autor + ", editora=" + editora + ", categoria=" + categoria + '}';
     }
 
 
