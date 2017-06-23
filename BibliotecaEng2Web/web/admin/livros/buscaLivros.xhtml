@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="utf-8"></meta>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="top"></ui:define>
+            <ui:define name="content">
+                <div class="tabelaUsuarios"> 
+                    <h:form>
+                        <div class="cadastroRetirada">
+                            <div class="tituloRetirada">Buscar Livro</div>
+                            <h:panelGrid columns="5" style="margin-left: 90px; margin-top: 29px;" >
+                                <h:outputLabel for="idBuscaTitulo" value="Busca por Titulo" style="font-weight: normal"/>
+                                <h:inputText id="idBuscaTitulo" style="width: 290px; margin-left: 20px" styleClass="form-control" required="true"  requiredMessage="Erro! digite um título!" a:placeholder="Digite o título..."   value="#{livroMB.tituloBusca}" />
+                                <h:commandButton value="Pesquisar" style="width: 150px; margin-left: 20px " styleClass="btn btn-success" action="#{livroMB.adicionarPesquisa()}"/>
+                                <h:button value="Voltar" style="align: right; width: 120px; margin-left: 20px; margin-right: 5px" styleClass="btn btn-success" outcome="/admin/index"/>
+                            </h:panelGrid>
+                        </div>
+                        <div class="alertaRetirada">
+                            <h:messages id="Mensagem" showDetail="false" errorClass="mensagem" styleClass= "alert alert-danger"/>
+                        </div>
+                        <h:dataTable var="livro" value="#{livroMB.pesquisaTitulo}" styleClass="table table-striped" >
+                            <f:facet name="header">
+                                <h:outputText value="Clientes encontrados:" style="font-size: 18px; padding-left: 12px" />
+                            </f:facet>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="ISBN" />
+                                </f:facet>
+                                <h:outputText id="idIsbn" value="#{livro.isbn}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome" />
+                                </f:facet>
+                                <h:outputText id="idNome" value="#{livro.nome}"  />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Autor" />
+                                </f:facet>
+                                <h:outputText id="idAutor" value="#{livro.autor}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Editora" />
+                                </f:facet>
+                                <h:outputText id="idEditora" value="#{livro.editora}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ano" />
+                                </f:facet>
+                                <h:outputText id="idAno" value="#{livro.ano}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Disponível" />
+                                </f:facet>
+                                <span style="margin-left: 17px; padding-top: 7px; padding-bottom: 7px; padding-left: 12px; padding-right: 12px" Class="label #{livro.label}">#{livro.disponivelString}</span>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Liberado em" />
+                                </f:facet>
+                                <h:outputText id="idDisponivel" value="#{retiradasMB.formataData(livro.dataLiberacao)}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="top"></ui:define>
+            <ui:define name="content">
+                <div class="logout">
+                    <h:form>
+                        <h:commandLink value="Logout" style="color: #4eb25e" action="#{loginMB.realizaLogout()}"/>                                   
+                    </h:form>
+                </div>
+                <div class="acessoADM">                    
+                    <h:outputText value="Seja bem vindo, #{loginMB.usuarioLogado.nome}"/>
+                    <br></br>Acesso Administrador
+                </div>
+                <h:form>
+                    <h:panelGrid columns="1" >
+                        <h:commandButton value="Novo Usuario Sistema" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow"  action="#{usuarioMB.novoUsuario()}" styleClass="btn btn-success"/>
+                        <h:commandButton value="Lista Usuarios" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{usuarioMB.mostrarUsuarios()}" styleClass="btn btn-success"/> 
+                        <p style="color: #15c58b">_________________________</p>
+                        <div class="dropdown">
+                            <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" style="width: 200px; height: 36px; margin-top: 1px; box-shadow: 1px 1px 1px threeddarkshadow">Menu Clientes
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu" style="width: 200px; text-align: center; box-shadow: 1px 1px 1px threeddarkshadow; background-color: #ccfed1">
+                                <li><a href="/BibliotecaEng2Web/faces/admin/clientes/buscaCliente.xhtml">Buscar Cliente</a></li>
+                                <li><a href="/BibliotecaEng2Web/faces/admin/clientes/listaClientes.xhtml">Lista de Clientes</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" style="width: 200px; height: 36px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow">Menu Livros
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu" style="width: 200px; text-align: center; box-shadow: 1px 1px 1px threeddarkshadow; background-color: #ccfed1">
+                                <li><a href="/BibliotecaEng2Web/faces/admin/livros/buscaLivros.xhtml">Buscar Livro</a></li>
+                                <li><a href="/BibliotecaEng2Web/faces/admin/livros/listaLivros.xhtml">Lista de Livros</a></li>
+                            </ul>
+                        </div>
+                        <h:commandButton value="Nova Retirada" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{retiradasMB.novaRetirada()}" styleClass="btn btn-success"/>
+                        <h:commandButton value="Nova Devolucao" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{devolucaoMB.novaDevolucao()}" styleClass="btn btn-success"/>
+                        <h:commandButton value="Relatorios" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{relatorioMB.mostrarRelatorios()}" styleClass="btn btn-success"/>
+                    </h:panelGrid>                    
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

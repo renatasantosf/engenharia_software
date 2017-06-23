@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">    
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="top"></ui:define>
+            <ui:define name="content">
+                <div class="tituloUsuarios">Novo Usuário</div>
+                <div class="cadastro">
+                    <h:form>
+                        <h:panelGrid columns="2" >
+                            <h:outputLabel for="idNome" value="Nome" style="font-weight: normal"/>
+                            <h:inputText id="idNome" required="true" requiredMessage="Erro! Campo 'Nome' vazio!" a:placeholder="Campo obrigatório" style="width: 280px" styleClass="form-control" value="#{usuarioMB.usuarioSelecionado.nome}"  />
+                            <h:outputLabel for="idTelefone" value="Telefone" style="font-weight: normal"/>
+                            <h:inputText id="idTelefone" required="true" requiredMessage="Erro! Campo 'Telefone' vazio!" a:placeholder="Campo obrigatório" style="width: 280px" styleClass="form-control" value="#{usuarioMB.usuarioSelecionado.telefone}" />
+                            <h:outputLabel for="idEmail" value="Email" style="font-weight: normal"/>
+                            <h:inputText id="idEmail" style="width: 280px" styleClass="form-control" value="#{usuarioMB.usuarioSelecionado.email}" />
+                            <h:outputLabel for="idSexo" value="Sexo" style="font-weight: normal" />
+                            <h:selectOneRadio id="idSexo" styleClass="radio radio" style="font-weight: normal; margin-left: 25px" value="#{usuarioMB.usuarioSelecionado.sexo}">
+                                <f:selectItem itemLabel="Masculino&emsp;&emsp;&emsp;&emsp;&emsp;"  itemValue="1" />
+                                <f:selectItem itemLabel="Feminino"  itemValue="2" />
+                            </h:selectOneRadio>
+                            <h:outputLabel for="idEstado" value="Estado" style="font-weight: normal" />
+                            <h:selectOneMenu id="idEstado" style="width: 280px" styleClass="form-control" value="#{usuarioMB.usuarioSelecionado.estado}">
+                                <f:selectItem itemLabel="Rio Grande do Sul" itemValue="RS" />
+                                <f:selectItem itemLabel="Santa Catarina" itemValue="SC" />
+                                <f:selectItem itemLabel="Parana" itemValue="PR" />
+                                <f:selectItem itemLabel="Sao Paulo" itemValue="SP" />
+                                <f:selectItem itemLabel="Rio de Janeiro" itemValue="RJ" />
+                            </h:selectOneMenu>
+                            <h:outputLabel for="idLogin" value="Login" style="font-weight: normal"/>
+                            <h:inputText id="idLogin" required="true" requiredMessage="Erro! Campo 'Login' vazio!" a:placeholder="Campo obrigatório" style="width: 280px" styleClass="form-control" value="#{usuarioMB.usuarioSelecionado.login}" />
+                            <h:outputLabel for="idSenha" value="Senha" style="font-weight: normal"/>
+                            <h:inputSecret id="idSenha" required="true" requiredMessage="Erro! Campo 'Senha' vazio!" a:placeholder="Campo obrigatório" style="width: 280px" styleClass="form-control" value="#{usuarioMB.usuarioSelecionado.senha}" />
+                            <h:outputLabel for="idAdmin"  value="Acesso admin" style="font-weight: normal"/>
+                            <h:selectBooleanCheckbox style="width: 60px" styleClass="checkbox" value="#{usuarioMB.usuarioSelecionado.admin}" />
+                        </h:panelGrid>
+                        <div class="botaoCadastro">
+                            <h:commandButton value="Cadastrar" style="width: auto; margin-top: -11px" styleClass="btn btn-success" action="#{usuarioMB.adicionarUsuario()}"/>
+                            <h:button value="Voltar" style="width: auto; margin-top: -11px; margin-left: 5px" styleClass="btn btn-success" outcome="/admin/index"/>
+                        </div>
+                    </h:form>
+                    <div class="alertaCadastroUsuario">
+                        <h:messages id="messages"  showDetail="false" styleClass= "alert alert-danger"/>
+                    </div>                    
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

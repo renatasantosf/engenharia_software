@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+        <meta charset="utf-8"></meta>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="top"></ui:define>
+            <ui:define name="content">
+                <div class="confirmacaoFundoPesquisa">
+                <div class="confirmacaoFundoRetirada">
+                    <div class="tituloErroPesquisa">Alerta!</div>
+                    <div class="validaClienteRetirada1">
+                        <h:form>
+                            <h:panelGrid columns="1" >
+                                <h:outputLabel for="idConfirmacao" value="Pesquisa não encontrada!" style="font-weight: normal"/>
+                                <h:outputLabel for="idConfirmacao" value="Realize a pesquisa antes de confimar retirada" style="font-weight: normal; font-size: 13px"/>
+                            </h:panelGrid>
+                            <div class="botaoErroPesquisa">
+                                <h:button value="Fechar" style="width: 80px; margin-left: 5px" styleClass="btn btn-danger" outcome="/admin/retiradas/retirada"/>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+                    </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

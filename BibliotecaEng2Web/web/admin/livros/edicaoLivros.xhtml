@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="top"></ui:define>
+            <ui:define name="content">
+                <div class="tituloLivros">Editar Livro</div>
+                <div class="cadastroLivros">
+                    <h:form>
+                        <h:panelGrid columns="2" >
+                            <h:outputLabel for="idIsbn" value="Isbn" style="font-weight: normal"/>
+                            <h:inputText readonly="true" id="idIsbn" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{livroMB.livroSelecionado.isbn}" />
+                            <h:outputLabel for="idTitulo" value="Titulo" style="font-weight: normal"/>
+                            <h:inputText id="idTitulo" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{livroMB.livroSelecionado.nome}"  />
+                            <h:outputLabel for="idAutor" value="Autor" style="font-weight: normal"/>
+                            <h:inputText id="idAutor" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{livroMB.livroSelecionado.autor}" />
+                            <h:outputLabel for="idEditora" value="Editora" style="font-weight: normal"/>
+                            <h:inputText id="idEditora" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{livroMB.livroSelecionado.editora}"  />
+                            <h:outputLabel for="idAno" value="Ano" style="font-weight: normal"/>
+                            <h:inputText id="idAno" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{livroMB.livroSelecionado.ano}" />
+                        </h:panelGrid>
+                        <div class="botaoCadastroClientes">
+                            <h:commandButton value="Confirmar" onclick="funcaoConfirmarCadastro()" style="width: auto; " styleClass="btn btn-success" action="#{livroMB.atualizarLivro()}"/>
+                            <h:button value="Voltar" style="width: auto; margin-left: 5px" styleClass="btn btn-success" outcome="/admin/livros/listaLivros"/>
+                        </div>
+                    </h:form>
+                    <div class="alerta">
+                        <h:messages id="idMensagem" showDetail="true" errorClass="mensagem" styleClass= "alert alert-danger"/>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
