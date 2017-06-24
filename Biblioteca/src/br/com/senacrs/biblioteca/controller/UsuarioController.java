@@ -48,8 +48,6 @@ public class UsuarioController implements Initializable {
     @FXML
     private TableColumn<Usuario, String> tableColumnEmail;
     
-    @FXML
-    private TableColumn<Usuario, String> tableColumnStatus;
     
 
     @FXML
@@ -66,8 +64,6 @@ public class UsuarioController implements Initializable {
     @FXML
     private TextField tfEmail;
     
-    @FXML
-    private TextField tfSenha;
     @FXML
     private TextField tfBuscaMatricula;
     
@@ -88,6 +84,7 @@ public class UsuarioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         usuarioNegocio = new UsuarioNegocio();
         
+        
         //Codigo meio redundante - por isso as vezes é melhor um controller para cada view 
         if (tableViewUsuarios != null) {
             carregarTableViewUsuarios();
@@ -102,7 +99,7 @@ public class UsuarioController implements Initializable {
         tableColumnCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         tableColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
         tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        tableColumnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        
         
         listaUsuarios = usuarioNegocio.listar();
 
@@ -116,8 +113,7 @@ public class UsuarioController implements Initializable {
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tableColumnCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         tableColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-        tableColumnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        
+     
         usuarioSelecionado = usuarioNegocio.procurarPorMatricula(Integer.parseInt(tfBuscaMatricula.getText()));
         observableListaUsuarios = FXCollections.observableArrayList(usuarioSelecionado);
         tableViewUsuarios.setItems(observableListaUsuarios);
@@ -179,14 +175,13 @@ public class UsuarioController implements Initializable {
         if(usuarioSelecionado == null) //Se for cadastrar
         {
             try {
+                  
                        usuarioNegocio.salvar(new Usuario(
                         Integer.parseInt(tfMatricula.getText()), 
                         tfNome.getText(),
                         tfCpf.getText(),
                         Integer.parseInt(tfTelefone.getText()),
-                        tfSenha.getText(),
-                        tfEmail.getText(),
-                        false
+                        tfEmail.getText()            
                         )           
                 );                
                 stage.close();
@@ -197,13 +192,14 @@ public class UsuarioController implements Initializable {
         }
         else //Se for editar
         {
+           
             try {
-               
+                    
                     usuarioSelecionado.setMatricula(Integer.parseInt(tfMatricula.getText()));
+                    
                     usuarioSelecionado.setNome(tfNome.getText());
                     usuarioSelecionado.setCpf(tfCpf.getText());
                     usuarioSelecionado.setTelefone(Integer.parseInt(tfTelefone.getText()));                
-                    usuarioSelecionado.setSenha(tfSenha.getText());
                     usuarioSelecionado.setEmail(tfEmail.getText());
                     usuarioNegocio.atualizar(usuarioSelecionado);
                               
@@ -217,9 +213,21 @@ public class UsuarioController implements Initializable {
     }
 
     @FXML
-    public void tratarBotaoCancelar(ActionEvent event) throws IOException {
-        Stage stage = (Stage) painelUsuario.getScene().getWindow();
-        stage.close();
+    public void tratarBotaoFechar(ActionEvent event) throws IOException {
+        tfMatricula.setText(null);
+        tfNome.setText(null);
+        tfCpf.setText(null);
+        tfTelefone.setText(null);
+        tfEmail.setText(null);
+
+    }
+    
+    @FXML
+    public void tratarBotaoVoltar(ActionEvent event) throws IOException {
+        Stage stage = (Stage) principal.getScene().getWindow();
+        stage.setTitle("Sistema de Biblioteca");
+        Parent painelTelaProxima = FXMLLoader.load(Biblioteca.class.getResource("view/PainelPrincipal.fxml"));
+        stage.setScene(new Scene(painelTelaProxima));
 
     }
 
@@ -233,7 +241,6 @@ public class UsuarioController implements Initializable {
         tfNome.setText(usuarioSelecionado.getNome());
         tfCpf.setText(usuarioSelecionado.getCpf());
         tfTelefone.setText(String.valueOf(usuarioSelecionado.getTelefone()));
-        tfSenha.setText(usuarioSelecionado.getSenha());
         tfEmail.setText(usuarioSelecionado.getEmail());
         
     }

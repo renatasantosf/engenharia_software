@@ -14,5 +14,6 @@ import java.util.List;
 public interface UsuarioDao extends Dao<Usuario>{
    public Usuario procurarPorMatricula(int matricula);
    public List<Usuario> procurarPorNome(String nome);
+   public List<Usuario> listarUsuario();
       
 }

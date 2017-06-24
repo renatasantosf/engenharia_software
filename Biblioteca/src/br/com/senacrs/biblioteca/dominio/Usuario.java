@@ -14,26 +14,22 @@ public class Usuario {
     private String nome;
     private String cpf;
     private int telefone;
-    private String senha;
     private String email;
-    private boolean status;
 
-    public Usuario(int matricula, String nome, String cpf, int telefone, String senha,String email, boolean status) {
+    public Usuario(int matricula, String nome, String cpf, int telefone, String email) {
         this.matricula = matricula;
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
-        this.senha = senha;
         this.email = email;
-        this.status = status;
+    
     }
 
-    public Usuario(String nome, String cpf, int telefone, String senha) {
+    public Usuario(String nome, String cpf, int telefone) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
-        this.senha = senha;
-        this.status = false;
+        
     }
 
     public int getMatricula() {
@@ -69,14 +65,7 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
+   
     public String getEmail() {
         return email;
     }
@@ -87,13 +76,6 @@ public class Usuario {
 
     
     
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
     
       
     

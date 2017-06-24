@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="principalEmprestimo" prefHeight="515.0" prefWidth="911.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.senacrs.biblioteca.controller.UsuarioController">
+<AnchorPane id="AnchorPane" fx:id="principalEmprestimo" prefHeight="515.0" prefWidth="911.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.senacrs.biblioteca.controller.EmprestimoController">
    <children>
       <ToolBar fx:id="toolPrincipal" prefHeight="41.0" prefWidth="911.0">
          <items>

@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class BDUtil {
      private final static String HOST = "localhost";
     private final static String PORT = "5432";
-    private final static String BD = "biblioteca_bd";
+    private final static String BD = "biblioteca_banco";
     private final static String URL = "jdbc:postgresql://"+HOST+":"+PORT+"/"+BD;
     private final static String USUARIO = "postgres";
     private final static String SENHA = "123456";

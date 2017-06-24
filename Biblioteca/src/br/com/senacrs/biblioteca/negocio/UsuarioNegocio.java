@@ -27,6 +27,10 @@ public class UsuarioNegocio {
     public List<Usuario> listar() {
         return (usuarioDao.listar());
     }
+    
+    public List<Usuario> listarUsuario() {
+        return (usuarioDao.listarUsuario());
+    }
 
     public void deletar(Usuario usuario) throws NegocioException {
         if (usuario == null || usuario.getMatricula() == 0) {
@@ -74,9 +78,7 @@ public class UsuarioNegocio {
         if (usuario.getNome() == null || usuario.getNome().isEmpty()) {
             throw new NegocioException("Campo nome nao informado");
         }
-        if (usuario.getSenha() == null || usuario.getSenha().isEmpty()) {
-            throw new NegocioException("Campo senha nao informado");
-        }
+       
         if (usuario.getCpf() == null || usuario.getCpf().isEmpty()) {
             throw new NegocioException("Campo cpf nao informado");
         } 

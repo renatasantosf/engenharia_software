@@ -26,6 +26,10 @@ public class LivroNegocio {
     public List<Livro> listar() {
         return (livroDao.listar());
     }
+    
+    public List<Livro> listarLivro() {
+        return (livroDao.listarLivro());
+    }
 
     public void deletar(Livro livro) throws NegocioException {
         if (livro == null || livro.getCodigo_exemplar()== 0) {
@@ -70,9 +74,7 @@ public class LivroNegocio {
         if (livro.getCategoria() == null || livro.getCategoria().isEmpty()) {
             throw new NegocioException("Campo categoria nao informado");
         }
-        if (livro.getEdicao() == 0) {
-            throw new NegocioException("Campo edição não informado");
-        }
+       
         if (livro.getTitulo() == null || livro.getTitulo().isEmpty()) {
             throw new NegocioException("Campo título não informado");
         }

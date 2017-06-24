@@ -27,7 +27,14 @@ public class Emprestimo {
         this.dt_entrega = dt_emprestimo.plusDays(7);
          
     }
-    
+     public Emprestimo(Usuario usuario, Livro livro) {
+        this.codigo = codigo;
+        this.usuario = usuario;
+        this.livro = livro;
+        this.dt_emprestimo = LocalDate.now();
+        this.dt_entrega = dt_emprestimo.plusDays(7);
+         
+    }
     
     
      public Emprestimo(Usuario usuario, Livro livro, LocalDate dt_emprestimo, LocalDate dt_entrega) {

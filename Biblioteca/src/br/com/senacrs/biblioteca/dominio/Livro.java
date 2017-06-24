@@ -9,38 +9,34 @@ public class Livro {
     private String isbn;
     private String editora;
     private String categoria;
-    private int edicao;
     private String titulo;
     private String autor;
     private boolean status;
 
-    public Livro(int codigo_exemplar, String isbn, String editora, String categoria, int edicao, String titulo, String autor) {
+    public Livro(int codigo_exemplar, String isbn, String editora, String categoria,String titulo, String autor) {
         this.codigo_exemplar = codigo_exemplar;
         this.isbn = isbn;
         this.editora = editora;
         this.categoria = categoria;
-        this.edicao = edicao;
         this.titulo = titulo;
         this.autor = autor;
         this.status = false;
     }
-     public Livro(String isbn, String editora, String categoria, int edicao, String titulo, String autor,boolean status) {
+     public Livro(String isbn, String editora, String categoria, String titulo, String autor,boolean status) {
         this.isbn = isbn;
         this.editora = editora;
         this.categoria = categoria;
-        this.edicao = edicao;
         this.titulo = titulo;
         this.autor = autor;
         this.status = status;
     }
      
-     public Livro(int codigo_exemplar, String isbn, String editora, String categoria, int edicao, String titulo, String autor
+     public Livro(int codigo_exemplar, String isbn, String editora, String categoria, String titulo, String autor
      ,boolean status) {
         this.codigo_exemplar = codigo_exemplar;
         this.isbn = isbn;
         this.editora = editora;
         this.categoria = categoria;
-        this.edicao = edicao;
         this.titulo = titulo;
         this.autor = autor;
         this.status = status;
@@ -78,13 +74,7 @@ public class Livro {
         this.categoria = categoria;
     }
 
-    public int getEdicao() {
-        return edicao;
-    }
-
-    public void setEdicao(int edicao) {
-        this.edicao = edicao;
-    }
+  
 
     public String getTitulo() {
         return titulo;

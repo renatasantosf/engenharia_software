@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -49,17 +50,22 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false"  prefHeight="35.0" prefWidth="184.0" text="Devoluções" GridPane.rowIndex="6">
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="184.0" text="Devoluções" GridPane.rowIndex="6">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false"  prefHeight="35.0" prefWidth="184.0" text="Atrasos" GridPane.rowIndex="8">
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="184.0" text="Atrasos" GridPane.rowIndex="8">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
          </children>
       </GridPane>
+      <ImageView fitHeight="355.0" fitWidth="336.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logoLogin.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

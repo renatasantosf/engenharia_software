@@ -7,8 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" fx:id="formLivro" prefHeight="400.0" prefWidth="535.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.com.senacrs.biblioteca.controller.LivroController">
+<AnchorPane id="AnchorPane" fx:id="formLivro" prefHeight="400.0" prefWidth="535.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.senacrs.biblioteca.controller.LivroController">
    <children>
       <GridPane alignment="CENTER" layoutX="62.0" layoutY="63.0" prefHeight="256.0" prefWidth="425.0">
         <columnConstraints>
@@ -18,7 +17,6 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -44,12 +42,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label prefHeight="17.0" prefWidth="200.0" text="Edição:" GridPane.rowIndex="4">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label prefHeight="17.0" prefWidth="200.0" text="Categoria:" GridPane.rowIndex="5">
+            <Label prefHeight="17.0" prefWidth="200.0" text="Categoria:" GridPane.rowIndex="4">
                <font>
                   <Font size="17.0" />
                </font>
@@ -58,8 +51,7 @@
             <TextField fx:id="tfTitulo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="tfAutor" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="tfEditora" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="tfEdicao" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="58.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="tfCategoria" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefColumnCount="0" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="tfCategoria" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefColumnCount="0" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <GridPane layoutX="324.0" layoutY="334.0" prefHeight="38.0" prefWidth="201.0">
@@ -71,7 +63,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btFechar" mnemonicParsing="false" onAction="#tratarBotaoFechar" prefHeight="37.0" prefWidth="93.0" text="Fechar">
+            <Button fx:id="btFechar" mnemonicParsing="false" onAction="#tratarBotaoFechar" prefHeight="37.0" prefWidth="93.0" text="Limpar">
                <font>
                   <Font name="Calibri Light" size="19.0" />
                </font>

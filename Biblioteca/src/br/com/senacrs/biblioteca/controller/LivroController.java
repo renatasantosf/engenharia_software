@@ -47,8 +47,7 @@ public class LivroController  implements Initializable {
     private TableColumn<Livro, String> tableColumnAutor;
     @FXML
     private TableColumn<Livro, String> tableColumnEditora;
-    @FXML
-    private TableColumn<Livro, Integer> tableColumnEdicao;
+
     @FXML
     private TableColumn<Livro, String> tableColumnCategoria;
     @FXML
@@ -118,7 +117,6 @@ public class LivroController  implements Initializable {
         tableColumnTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         tableColumnAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
         tableColumnEditora.setCellValueFactory(new PropertyValueFactory<>("editora"));
-        tableColumnEdicao.setCellValueFactory(new PropertyValueFactory<>("edicao"));
         tableColumnCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
         tableColumnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         
@@ -135,7 +133,6 @@ public class LivroController  implements Initializable {
             tableColumnTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
             tableColumnAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
             tableColumnEditora.setCellValueFactory(new PropertyValueFactory<>("editora"));
-            tableColumnEdicao.setCellValueFactory(new PropertyValueFactory<>("edicao"));
             tableColumnCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
             tableColumnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
@@ -150,7 +147,6 @@ public class LivroController  implements Initializable {
             tableColumnTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
             tableColumnAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
             tableColumnEditora.setCellValueFactory(new PropertyValueFactory<>("editora"));
-            tableColumnEdicao.setCellValueFactory(new PropertyValueFactory<>("edicao"));
             tableColumnCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
             tableColumnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
@@ -217,14 +213,13 @@ public class LivroController  implements Initializable {
     public void tratarBotaoSalvar(ActionEvent event) throws IOException {
         Stage stage = (Stage) formLivro.getScene().getWindow();
         
-        if(livroSelecionado == null) //Se for cadastrar
+        if(livroSelecionado == null) 
         {
             try {
                 livroNegocio.salvar(new Livro(
                         tfIsbn.getText(), 
                         tfEditora.getText(),
                         tfCategoria.getText(),
-                        Integer.parseInt(tfEdicao.getText()),
                         tfTitulo.getText(),
                         tfAutor.getText(),
                         false)           
@@ -241,8 +236,7 @@ public class LivroController  implements Initializable {
           
                     livroSelecionado.setIsbn(tfIsbn.getText());
                     livroSelecionado.setEditora(tfEditora.getText());
-                    livroSelecionado.setCategoria(tfCategoria.getText());
-                    livroSelecionado.setEdicao(Integer.parseInt(tfEdicao.getText()));                
+                    livroSelecionado.setCategoria(tfCategoria.getText());       
                     livroSelecionado.setTitulo(tfTitulo.getText());
                     livroSelecionado.setAutor(tfAutor.getText());
                     livroNegocio.atualizar(livroSelecionado);
@@ -258,8 +252,11 @@ public class LivroController  implements Initializable {
 
     @FXML
     public void tratarBotaoFechar(ActionEvent event) throws IOException {
-        Stage stage = (Stage) formLivro.getScene().getWindow();
-        stage.close();
+        tfIsbn.setText(null);
+        tfEditora.setText(null);
+        tfCategoria.setText(null);
+        tfTitulo.setText(null);
+        tfAutor.setText(null);
 
     }
 
@@ -272,10 +269,16 @@ public class LivroController  implements Initializable {
         tfIsbn.setText(livroSelecionado.getIsbn());
         tfEditora.setText(livroSelecionado.getEditora());
         tfCategoria.setText(livroSelecionado.getCategoria());
-        tfEdicao.setText(String.valueOf(livroSelecionado.getEdicao()));
         tfTitulo.setText(livroSelecionado.getTitulo());
         tfAutor.setText(livroSelecionado.getAutor());
     }
 
-    
+     @FXML
+    public void tratarBotaoVoltar(ActionEvent event) throws IOException {
+        Stage stage = (Stage) principalLivro.getScene().getWindow();
+        stage.setTitle("Sistema de Biblioteca");
+        Parent painelTelaProxima = FXMLLoader.load(Biblioteca.class.getResource("view/PainelPrincipal.fxml"));
+        stage.setScene(new Scene(painelTelaProxima));
+
+    }
 }

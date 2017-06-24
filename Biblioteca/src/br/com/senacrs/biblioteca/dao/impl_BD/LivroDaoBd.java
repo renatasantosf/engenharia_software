@@ -19,19 +19,18 @@ public class LivroDaoBd extends DaoBd<Livro> implements LivroDao{
         int id = 0;
         try {
             String sql = "INSERT INTO livro ("
-                    + "isbn,editora,categoria,edicao,titulo,autor,status) "
-                    + "VALUES (?,?,?,?,?,?,?)";
-
-            
+                    + "isbn,editora,categoria,nome,autor,disponivel) "
+                    + "VALUES (?,?,?,?,?,?)";
+           
             conectarObtendoId(sql);
             comando.setString(1, livro.getIsbn());
             comando.setString(2, livro.getEditora());
             comando.setString(3, livro.getCategoria());
-            comando.setInt(4,livro.getEdicao());
-            comando.setString(5, livro.getTitulo());
-            comando.setString(6, livro.getAutor());
-            comando.setBoolean(7, false);
+            comando.setString(4, livro.getTitulo());
+            comando.setString(5, livro.getAutor());
+            comando.setBoolean(6, false);
             comando.executeUpdate();
+            
             ResultSet resultado = comando.getGeneratedKeys();
             if (resultado.next()) {
                 //seta o id para o objeto
@@ -57,7 +56,7 @@ public class LivroDaoBd extends DaoBd<Livro> implements LivroDao{
     @Override
     public void deletar(Livro livro) {
       try {
-            String sql = "DELETE FROM livro WHERE codigo_exemplar = ?";
+            String sql = "DELETE FROM livro WHERE id = ?";
 
             conectar(sql);
             comando.setInt(1, livro.getCodigo_exemplar());
@@ -76,18 +75,17 @@ public class LivroDaoBd extends DaoBd<Livro> implements LivroDao{
     @Override
     public void atualizar(Livro livro) {
          try {
-            String sql = "UPDATE livro SET isbn=?, editora=?, categoria=?, edicao=?,titulo=?, "
-                    + "autor=?"
-                    + "WHERE codigo_exemplar=?";
+            String sql = "UPDATE livro SET isbn=?, editora=?, categoria=?, nome=?, "
+                    + "autor=?, disponivel =?"
+                    + "WHERE id=?";
           
             conectar(sql);
             comando.setString(1, livro.getIsbn());
             comando.setString(2, livro.getEditora());
             comando.setString(3, livro.getCategoria());
-            comando.setInt(4, livro.getEdicao());
-            comando.setString(5, livro.getTitulo());
-            comando.setString(6, livro.getAutor());
-            comando.setBoolean(7, livro.isStatus());
+            comando.setString(4, livro.getTitulo());
+            comando.setString(5, livro.getAutor());
+            comando.setBoolean(6, livro.isStatus());
             comando.executeUpdate();
             JOptionPane.showMessageDialog(null,"Livro alterado com sucesso.");
         } catch (SQLException ex) {
@@ -110,17 +108,55 @@ public class LivroDaoBd extends DaoBd<Livro> implements LivroDao{
             ResultSet resultado = comando.executeQuery();
 
             while (resultado.next()) {
-                int codigo_exemplar = resultado.getInt("codigo_exemplar");
+                int codigo_exemplar = resultado.getInt("id");
                 String isbn = resultado.getString("isbn");
                 String editora = resultado.getString("editora");
                 String categoria = resultado.getString("categoria");
-                int edicao = resultado.getInt("edicao");
-                String titulo = resultado.getString("titulo");
+                String titulo = resultado.getString("nome");
                 String autor = resultado.getString("autor");
-                boolean status = resultado.getBoolean("status");
+                boolean status = resultado.getBoolean("disponivel");
                 
 
-                Livro livro = new Livro(codigo_exemplar,isbn,editora,categoria,edicao,titulo,
+                Livro livro = new Livro(codigo_exemplar,isbn,editora,categoria,titulo,
+                autor,status);
+
+                listaLivros.add(livro);
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao buscar livros.");
+            throw new RuntimeException(ex);
+        } finally {
+            fecharConexao();
+        }
+
+        return (listaLivros);
+    }
+
+    
+    @Override
+    public List<Livro> listarLivro() {
+        List<Livro> listaLivros = new ArrayList<>();
+      
+        String sql = "SELECT id,nome FROM livro";
+
+        try {
+            conectar(sql);
+            
+            ResultSet resultado = comando.executeQuery();
+
+            while (resultado.next()) {
+                int codigo_exemplar = resultado.getInt("id");
+                String isbn = resultado.getString("isbn");
+                String editora = resultado.getString("editora");
+                String categoria = resultado.getString("categoria");
+                String titulo = resultado.getString("nome");
+                String autor = resultado.getString("autor");
+                boolean status = resultado.getBoolean("disponivel");
+                
+
+                Livro livro = new Livro(codigo_exemplar,isbn,editora,categoria,titulo,
                 autor,status);
 
                 listaLivros.add(livro);
@@ -138,9 +174,10 @@ public class LivroDaoBd extends DaoBd<Livro> implements LivroDao{
     }
 
    
+   
     @Override
     public Livro procurarPorCodigo(int codigo_exemplar) {
-        String sql = "SELECT * FROM livro WHERE codigo_exemplar = ?";
+        String sql = "SELECT * FROM livro WHERE id = ?";
 
         try {
             conectar(sql);
@@ -151,13 +188,12 @@ public class LivroDaoBd extends DaoBd<Livro> implements LivroDao{
                 String isbn = resultado.getString("isbn");
                 String editora = resultado.getString("editora");
                 String categoria = resultado.getString("categoria");
-                int edicao = resultado.getInt("edicao");
-                String titulo = resultado.getString("titulo");
+                String titulo = resultado.getString("nome");
                 String autor = resultado.getString("autor");
-                boolean status = resultado.getBoolean("status");
+                boolean status = resultado.getBoolean("disponivel");
                 
 
-                Livro livro = new Livro(codigo_exemplar,isbn,editora,categoria,edicao,titulo,
+                Livro livro = new Livro(codigo_exemplar,isbn,editora,categoria,titulo,
                 autor,status);
 
                 return livro;
@@ -177,7 +213,7 @@ public class LivroDaoBd extends DaoBd<Livro> implements LivroDao{
     @Override
     public Livro procurarPorTitulo(String titulo) {
           
-        String sql = "SELECT * FROM livro WHERE titulo = ?";
+        String sql = "SELECT * FROM livro WHERE nome = ?";
 
         try {
             conectar(sql);
@@ -185,16 +221,15 @@ public class LivroDaoBd extends DaoBd<Livro> implements LivroDao{
             ResultSet resultado = comando.executeQuery();
 
             while (resultado.next()) {
-                int codigo_exemplar = resultado.getInt("codigo_exemplar");
+                int codigo_exemplar = resultado.getInt("id");
                 String isbn = resultado.getString("isbn");
                 String editora = resultado.getString("editora");
                 String categoria = resultado.getString("categoria");
-                int edicao = resultado.getInt("edicao");
                 String autor = resultado.getString("autor");
-                boolean status = resultado.getBoolean("status");
+                boolean status = resultado.getBoolean("disponivel");
                 
 
-                Livro livro = new Livro(codigo_exemplar,isbn,editora,categoria,edicao,titulo,
+                Livro livro = new Livro(codigo_exemplar,isbn,editora,categoria,titulo,
                 autor,status);
 
                 return livro;

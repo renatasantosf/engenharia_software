@@ -19,9 +19,9 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
     @Override
     public void salvar(Usuario usuario) {
         try {
-            String sql = "INSERT INTO usuario ("
-                    + "matricula,nome,cpf,telefone,senha,email,status) "
-                    + "VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO cliente ("
+                    + "matricula,nome,cpf,telefone,email) "
+                    + "VALUES (?,?,?,?,?)";
 
             //Foi criado um novo método conectar para obter o id
             conectarObtendoId(sql);
@@ -29,10 +29,8 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
             comando.setString(2, usuario.getNome());
             comando.setString(3, usuario.getCpf());
             comando.setInt(4, usuario.getTelefone());
-            comando.setString(5, usuario.getSenha());
-            comando.setString(6, usuario.getEmail());
-            comando.setBoolean(7, usuario.isStatus());
-                             
+            comando.setString(5, usuario.getEmail());
+                                   
             comando.executeUpdate();
             JOptionPane.showMessageDialog(null,"Usuário cadastrado com sucesso.");
 
@@ -47,7 +45,7 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
     @Override
     public void deletar(Usuario usuario) {
         try {
-            String sql = "DELETE FROM usuario WHERE matricula = ?";
+            String sql = "DELETE FROM cliente WHERE matricula = ?";
 
             conectar(sql);
             comando.setInt(1, usuario.getMatricula());
@@ -65,17 +63,15 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
     @Override
     public void atualizar(Usuario usuario) {
         try {
-            String sql = "UPDATE usuario SET nome=?, cpf=?, telefone=?, senha=?,email=?, status=?"
+            String sql = "UPDATE cliente SET nome=?, cpf=?, telefone=?, email=?"
                     + "WHERE matricula=?";
           
             conectar(sql);
             comando.setString(1, usuario.getNome());
             comando.setString(2, usuario.getCpf());
             comando.setInt(3, usuario.getTelefone());
-            comando.setString(4, usuario.getSenha());
-            comando.setString(5, usuario.getEmail());
-            comando.setBoolean(6, usuario.isStatus());
-            comando.setInt(7, usuario.getMatricula());
+            comando.setString(4, usuario.getEmail());
+            comando.setInt(5, usuario.getMatricula());
             comando.executeUpdate();
             JOptionPane.showMessageDialog(null,"Usuário alterado com sucesso.");
 
@@ -92,7 +88,7 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
     public List<Usuario> listar() {
         List<Usuario> listaUsuarios = new ArrayList<>();
       
-        String sql = "SELECT * FROM usuario";
+        String sql = "SELECT * FROM cliente";
 
         try {
             conectar(sql);
@@ -104,12 +100,47 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
                 String nome = resultado.getString("nome");
                 String cpf = resultado.getString("cpf");
                 int telefone = resultado.getInt("telefone");
-                String senha = resultado.getString("senha");
                 String email = resultado.getString("email");
-                boolean status = resultado.getBoolean("status");
+                
                
 
-                Usuario usuario = new Usuario(matricula,nome,cpf,telefone,senha,email,status);
+                Usuario usuario = new Usuario(matricula,nome,cpf,telefone,email);
+
+                listaUsuarios.add(usuario);
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao buscar Usuários.");
+            throw new RuntimeException(ex);
+        } finally {
+            fecharConexao();
+        }
+
+        return (listaUsuarios);
+    }
+    
+    
+    @Override
+    public List<Usuario> listarUsuario() {
+        List<Usuario> listaUsuarios = new ArrayList<>();
+      
+        String sql = "SELECT MATRICULA FROM cliente";
+
+        try {
+            conectar(sql);
+            
+            ResultSet resultado = comando.executeQuery();
+
+            while (resultado.next()) {
+                int matricula = resultado.getInt("matricula");
+                String nome = resultado.getString("nome");
+                String cpf = resultado.getString("cpf");
+                int telefone = resultado.getInt("telefone");
+                String email = resultado.getString("email");
+               
+
+                Usuario usuario = new Usuario(matricula,nome,cpf,telefone,email);
 
                 listaUsuarios.add(usuario);
 
@@ -127,7 +158,7 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
 
     @Override
     public Usuario procurarPorMatricula(int matricula) {
-        String sql = "SELECT * FROM usuario WHERE matricula = ?";
+        String sql = "SELECT * FROM cliente WHERE matricula = ?";
 
         try {
             conectar(sql);
@@ -138,11 +169,10 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
                 String nome = resultado.getString("nome");
                 String cpf = resultado.getString("cpf");
                 int telefone = resultado.getInt("telefone");
-                String senha = resultado.getString("senha");
                 String email = resultado.getString("email");
-                boolean status = resultado.getBoolean("status");
+               
 
-                Usuario usuario = new Usuario(matricula,nome,cpf,telefone,senha,email,status);
+                Usuario usuario = new Usuario(matricula,nome,cpf,telefone,email);
 
                 return usuario;
 
@@ -162,7 +192,7 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
     @Override
     public List<Usuario> procurarPorNome(String nome) {
         List<Usuario> listaUsuarios = new ArrayList<>();
-        String sql = "SELECT * FROM usuario WHERE nome LIKE ?";
+        String sql = "SELECT * FROM cliente WHERE nome LIKE ?";
 
         try {
             conectar(sql);
@@ -177,7 +207,7 @@ public class UsuarioDaoBd extends DaoBd<Usuario> implements UsuarioDao {
                 String email = resultado.getString("email");
                 boolean status = resultado.getBoolean("status");
                
-                 Usuario usuario = new Usuario(matricula,nome,cpf,telefone,senha,email,status);
+                 Usuario usuario = new Usuario(matricula,nome,cpf,telefone,email);
                 
 
                 listaUsuarios.add(usuario);
